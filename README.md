@@ -24,11 +24,11 @@ Follow these steps to get your development environment running:
    ```bash
    git clone https://github.com/alshohb/Digital-Forensics-Password-Cracker.git
 
-2. Navigate to the project directory:
+2. **Navigate to the project directory**:
    ```bash
 cd Digital-Forensics-Password-Cracker
 
-3. Run the script:
+3. **Run the script**:
    ```bash
 python password_recovery.py
 
