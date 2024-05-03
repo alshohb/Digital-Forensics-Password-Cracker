@@ -26,11 +26,11 @@ Follow these steps to get your development environment running:
 
 2. **Navigate to the project directory**:
    ```bash
-cd Digital-Forensics-Password-Cracker
+   cd Digital-Forensics-Password-Cracker
 
 3. **Run the script**:
    ```bash
-python password_recovery.py
+   python password_recovery.py
 
 
 ## Usage
