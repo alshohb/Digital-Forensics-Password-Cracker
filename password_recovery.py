@@ -17,6 +17,18 @@ def generate_hash(password, salt):
     final_hash = hash_object.hexdigest()
     return final_hash
 
+def save_to_file(hash, salt):
+    """Save hash and salt to a text file."""
+    with open('hash_salt_store.txt', 'w') as file:
+        file.write(f"{hash}\n{salt}")
+
+def read_from_file():
+    """Read hash and salt from a text file."""
+    with open('hash_salt_store.txt', 'r') as file:
+        hash = file.readline().strip()
+        salt = file.readline().strip()
+    return hash, salt
+
 def find_password(stored_hash, salt):
     """Attempt to recover the password by checking all combinations."""
     chars = string.ascii_letters
@@ -36,13 +48,19 @@ def automated_recovery():
         stored_hash = generate_hash(user_password, user_salt)
         hash_time = timeit.default_timer() - start_time_hash
 
+        # Save hash and salt to file
+        save_to_file(stored_hash, user_salt)
+
         print(f"Generated hash: {stored_hash}")
         print(f"Used salt: {user_salt}")
         print(f"Time to create hash: {hash_time:.6f} seconds")
 
+        # Fetch hash and salt from file
+        fetched_hash, fetched_salt = read_from_file()
+
         # Measure password recovery time
         start_time_recovery = timeit.default_timer()
-        recovered_password = find_password(stored_hash, user_salt)
+        recovered_password = find_password(fetched_hash, fetched_salt)
         recovery_time = timeit.default_timer() - start_time_recovery
 
         if recovered_password:
